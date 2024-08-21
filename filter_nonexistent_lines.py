@@ -7,5 +7,12 @@ with open(input_filename, "r") as infile, open(output_filename, "w") as outfile:
     for line in infile:
         # 각 줄의 공백을 제거하고 마지막 3글자 확인
         if not line.strip()[-2:] == "폐지":
-            # 조건에 맞는 줄을 새로운 파일에 작성
-            outfile.write(line)
+            # 마지막 두 글자를 제거하고, 문자열의 양쪽 공백을 제거
+            stripped_line = line.strip()
+            new_line = stripped_line[:-2].strip()
+            
+            # 각 단어 사이의 간격을 하나의 공백으로 맞추기
+            formatted_line = ' '.join(new_line.split())
+
+            # 포맷팅된 줄을 출력 파일에 쓰기
+            outfile.write(formatted_line + "\n")
